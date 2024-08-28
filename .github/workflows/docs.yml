@@ -4,7 +4,7 @@ on: [push]
 
 env:
   CI: true
-  DOCS_REPO: "git@github.com:jacob-ebey/temp-docs-test.git"
+  DOCS_REPO: "jacob-ebey/temp-docs-test"
   DOCS_FILE: "build.json"
 
 jobs:
