@@ -1,0 +1,34 @@
+name: 📔 Reference Docs
+
+on: [push]
+
+env:
+  CI: true
+  DOCS_REPO: "https://github.com/jacob-ebey/temp-docs-test.git"
+  DOCS_FILE: "api.json"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Build docs
+        run: |
+          touch api.json
+          echo '{ "ref_name": "${{ github.ref_name }}" }' > api.json
+
+      - name: ⚙️ Configure git
+        run: |
+          git config --unset-all http.https://github.com/.extraheader
+          git remote add docs ${{ env.DOCS_REPO }}
+          git fetch docs
+
+      - name: ⬆️ Commit and push docs
+        run: |
+          cp ${{ env.DOCS_FILE }} ../api.json
+          git reset --hard HEAD
+          git checkout docs/main
+          git checkout -b temp_docs__${{ github.ref_name }}
+          mv ../api.json api.json
+          git add api.json
+          git commit -m "chore: update api.json"
+          git push -f -u docs HEAD:${{ github.ref_name }}
