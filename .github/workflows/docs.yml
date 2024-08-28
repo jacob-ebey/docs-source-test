@@ -18,7 +18,7 @@ jobs:
         run: |
           touch build.json
           echo '{ "ref_name": "${{ github.ref_name }}" }' > build.json
-      
+
       - name: 📝 Save docs
         run: |
           echo "Saving docs"
@@ -28,21 +28,15 @@ jobs:
         run: |
           echo "Cleaning folder"
           rm -rf *
-      
-      - name: ⬇️ Checkout repo
+
+      - name: ⬇️ Checkout docs repo
         uses: actions/checkout@v4
         with:
           repository: ${{ env.DOCS_REPO }}
 
-      - name: ⬆️ Update docs
+      - name: 📦 Commit changes
         run: |
           mv ../api.json api.json
           git add api.json
-      
-      - name: 📦 Commit changes
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ env.DOCS_REPO }}
-        run: |
           git commit -m "Update docs"
           git push -f -u docs HEAD:${{ github.ref_name }}
