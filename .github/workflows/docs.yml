@@ -5,7 +5,7 @@ on: [push]
 env:
   CI: true
   DOCS_REPO: "https://github.com/jacob-ebey/temp-docs-test.git"
-  DOCS_FILE: "api.json"
+  DOCS_FILE: "build.json"
 
 jobs:
   build:
@@ -16,8 +16,8 @@ jobs:
 
       - name: 🏗 Build docs
         run: |
-          touch api.json
-          echo '{ "ref_name": "${{ github.ref_name }}" }' > api.json
+          touch build.json
+          echo '{ "ref_name": "${{ github.ref_name }}" }' > build.json
 
       - name: ⚙️ Configure git
         run: |
