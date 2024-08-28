@@ -42,4 +42,4 @@ jobs:
           mv ../api.json api.json
           git add api.json
           git commit -m "Update docs"
-          git push -f -u docs HEAD:${{ github.ref_name }}
+          git push -f -u origin HEAD:${{ github.ref_name }}
