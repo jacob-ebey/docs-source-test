@@ -33,6 +33,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ env.DOCS_REPO }}
+          token: ${{ secrets.GH_PAT }}
 
       - name: 📦 Commit changes
         run: |
