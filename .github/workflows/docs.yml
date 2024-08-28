@@ -24,6 +24,7 @@ jobs:
           git config --unset-all http.https://github.com/.extraheader
           git config --global user.email "github-bot@github.com"
           git config --global user.name "Docs Bot"
+          git config --global http.version HTTP/1.1
           git remote add docs ${{ env.DOCS_REPO }}
           git fetch docs
 
