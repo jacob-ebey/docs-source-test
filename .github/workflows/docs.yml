@@ -11,6 +11,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+
       - name: 🏗 Build docs
         run: |
           touch api.json
